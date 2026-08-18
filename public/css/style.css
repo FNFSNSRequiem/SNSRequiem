@@ -1158,3 +1158,159 @@ footer p {
 .update-card h2 {
     margin-top: 5px;
 }
+/* ========================================
+   SOCIALS / TELEGRAPH
+======================================== */
+
+.social-intro {
+    margin-bottom: 55px;
+}
+
+
+.social-intro h2 {
+    font-size: 50px;
+}
+
+
+.social-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(320px, 1fr)
+        );
+
+    gap: 30px;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+}
+
+
+.social-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    min-height: 180px;
+
+    padding: 25px;
+
+    color: #171717;
+
+    text-decoration: none;
+
+    background: #eee7d2;
+
+    border:
+        3px solid #171717;
+
+    box-shadow:
+        7px 7px 0 rgba(0, 0, 0, 0.16);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.social-card:nth-child(odd) {
+    transform: rotate(-0.7deg);
+}
+
+
+.social-card:nth-child(even) {
+    transform: rotate(0.7deg);
+}
+
+
+.social-card:hover {
+    transform:
+        translateY(-6px)
+        rotate(0deg);
+
+    box-shadow:
+        10px 10px 0 rgba(0, 0, 0, 0.22);
+}
+
+
+/*
+    Temporary logo box.
+
+    Replace the text inside these with
+    your actual logo images later.
+*/
+
+.social-icon {
+    flex-shrink: 0;
+
+    width: 90px;
+    height: 90px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #171717;
+
+    color: #eee7d2;
+
+    border:
+        2px solid #171717;
+
+    font-family:
+        "Waltograph UI",
+        Georgia,
+        serif;
+
+    font-size: 13px;
+
+    text-align: center;
+}
+
+
+.social-info h3 {
+    font-family: "Waltograph", cursive;
+
+    font-size: 35px;
+
+    margin-bottom: 8px;
+}
+
+
+.social-info p {
+    font-size: 16px;
+
+    line-height: 1.4;
+
+    margin-bottom: 15px;
+}
+
+
+.social-info span {
+    font-family:
+        "Waltograph UI",
+        Georgia,
+        serif;
+
+    font-size: 14px;
+
+    border-bottom:
+        1px solid #171717;
+}
+
+
+@media (max-width: 600px) {
+
+    .social-card {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+}
