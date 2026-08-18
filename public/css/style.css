@@ -1,4 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
+@font-face {
+    font-family: "Waltograph";
+    src: url("/fonts/waltograph42.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Waltograph UI";
+    src: url("/fonts/waltographUI.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* ========================================
+   1928 — SNS: REQUIEM
+======================================== */
 
 * {
     margin: 0;
@@ -11,671 +28,576 @@ html {
 }
 
 body {
-    background: #050505;
-    color: #eee;
-    font-family: "VT323", monospace;
-    font-size: 20px;
+    background: #e5dfc9;
+    color: #171717;
+
+    font-family: Georgia, "Times New Roman", serif;
+
     overflow-x: hidden;
+
+    /*
+        Old paper texture.
+        No external image required.
+    */
+    background-image:
+        radial-gradient(
+            rgba(0, 0, 0, 0.08) 1px,
+            transparent 1px
+        );
+
+    background-size: 5px 5px;
 }
 
-/* --------------------
-   EFFECTS
--------------------- */
+
+/* ========================================
+   OLD FILM OVERLAY
+======================================== */
 
 .scanlines {
     position: fixed;
     inset: 0;
+
     pointer-events: none;
+
     z-index: 1000;
 
-    background: repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 3px,
-        rgba(255,255,255,0.025) 4px
-    );
+    opacity: 0.18;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 5px,
+            rgba(0, 0, 0, 0.08) 6px
+        );
 }
 
 .noise {
     position: fixed;
     inset: 0;
-    pointer-events: none;
-    z-index: 999;
-    opacity: 0.05;
 
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+
+    z-index: 999;
+
+    opacity: 0.13;
+
+    background-image:
+        radial-gradient(
+            rgba(0, 0, 0, 0.35) 1px,
+            transparent 1px
+        );
+
+    background-size: 4px 4px;
+
+    animation: filmNoise 0.18s steps(2) infinite;
 }
 
-/* --------------------
-   NAVBAR
--------------------- */
+
+/* ========================================
+   FILM SCRATCHES
+======================================== */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 998;
+
+    opacity: 0.12;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 48%,
+            #111 49%,
+            transparent 50%
+        );
+
+    background-size: 37px 100%;
+
+    animation: scratches 0.7s linear infinite;
+}
+
+
+/* ========================================
+   NAVIGATION
+======================================== */
 
 .navbar {
-    position: fixed;
+    position: sticky;
+
     top: 0;
-    left: 0;
-    width: 100%;
+
+    z-index: 200;
 
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
-    padding: 20px 5%;
+    padding: 15px 6%;
 
-    background: rgba(0,0,0,0.92);
-    border-bottom: 1px solid #333;
+    background: #eee7d2;
 
-    z-index: 100;
+    border-bottom:
+        3px double #171717;
+
+    box-shadow:
+        0 4px 0 rgba(0, 0, 0, 0.15);
 }
 
+
 .nav-logo {
-    font-family: "Press Start 2P", monospace;
-    font-size: 16px;
-    letter-spacing: 2px;
+    font-family: "Waltograph", cursive;
+
+    font-size: 34px;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
 }
 
 .nav-logo span {
-    color: #d40000;
-}
-
-nav {
-    display: flex;
-    gap: 25px;
-}
-
-nav a {
-    color: #aaa;
-    text-decoration: none;
-    transition: 0.15s;
-}
-
-nav a:hover {
-    color: white;
-    text-shadow: 2px 0 #d00000;
-}
-
-/* --------------------
-   HERO
--------------------- */
-
-.hero {
-    min-height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-
-    background:
-        radial-gradient(circle at center, #222 0%, #050505 55%, #000 100%);
-
-    position: relative;
-}
-
-.hero-glitch {
-    position: relative;
-
-    font-family: "Press Start 2P", monospace;
-    font-size: clamp(30px, 7vw, 90px);
-
-    margin-bottom: 30px;
-}
-
-.hero-glitch span {
-    display: block;
-}
-
-.hero-glitch span:nth-child(2),
-.hero-glitch span:nth-child(3) {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    opacity: 0;
-}
-
-.subtitle {
-    color: #999;
-    letter-spacing: 4px;
-    margin-bottom: 40px;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 15px;
-}
-
-.button {
-    display: inline-block;
-
-    padding: 15px 30px;
-
-    color: white;
-    background: #a00000;
-
-    border: 1px solid #ff3030;
-
-    text-decoration: none;
-
-    font-family: "Press Start 2P", monospace;
-    font-size: 12px;
-
-    transition: 0.15s;
-}
-
-.button:hover {
-    background: #ff2020;
-    transform: translateY(-3px);
-}
-
-.button.secondary {
-    background: transparent;
-    border-color: #555;
-}
-
-.warning {
-    position: absolute;
-    bottom: 30px;
-
-    color: #666;
-    font-size: 16px;
-}
-
-.warning span {
-    color: #d00000;
-}
-
-/* --------------------
-   SECTIONS
--------------------- */
-
-.section {
-    min-height: 80vh;
-    padding: 120px 8%;
-
-    border-top: 1px solid #222;
-}
-
-.section-title {
-    font-family: "Press Start 2P", monospace;
-    font-size: 25px;
-    margin-bottom: 50px;
-}
-
-.section-title span {
-    color: #900000;
-    margin-right: 15px;
-}
-
-/* --------------------
-   ABOUT
--------------------- */
-
-.content-box {
-    max-width: 850px;
-
-    padding: 40px;
-
-    background: #0b0b0b;
-    border-left: 3px solid #a00000;
-
-    box-shadow: 10px 10px 0 #111;
-}
-
-.content-box h2 {
-    font-family: "Press Start 2P", monospace;
-    font-size: 20px;
-    margin-bottom: 30px;
-}
-
-.content-box p {
-    color: #aaa;
-    margin: 20px 0;
-    line-height: 1.5;
-}
-
-.red-text {
-    color: #d00000 !important;
-}
-
-/* --------------------
-   SONGS
--------------------- */
-
-.song-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.song-card {
-    min-height: 180px;
-
-    padding: 25px;
-
-    background: #0c0c0c;
-    border: 1px solid #292929;
-
-    transition: 0.2s;
-}
-
-.song-card:hover {
-    border-color: #a00000;
-    transform: translateY(-5px);
-}
-
-.song-number {
-    color: #800000;
-}
-
-.song-card h3 {
-    font-family: "Press Start 2P", monospace;
-    margin: 30px 0 10px;
-}
-
-.song-card p {
-    color: #555;
-}
-
-/* --------------------
-   CHARACTERS
--------------------- */
-
-.character-placeholder {
-    text-align: center;
-    padding: 100px 20px;
-
-    background: #080808;
-    border: 1px dashed #333;
-}
-
-.character-glitch {
-    font-family: "Press Start 2P", monospace;
-    font-size: 80px;
-    color: #700000;
-
-    animation: flicker 2s infinite;
-}
-
-.character-placeholder h2 {
-    margin: 30px 0 10px;
-}
-
-/* --------------------
-   MEDIA
--------------------- */
-
-.media-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.media-card {
-    height: 200px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #111;
-    border: 1px solid #333;
-
-    color: #555;
-
-    transition: 0.2s;
-}
-
-.media-card:hover {
-    color: white;
-    border-color: #900000;
-}
-
-/* --------------------
-   CREDITS
--------------------- */
-
-.credits-box {
-    max-width: 650px;
-    text-align: center;
-
-    margin: auto;
-    padding: 50px;
-
-    background: #0b0b0b;
-    border: 1px solid #292929;
-}
-
-.credits-box h2 {
-    font-family: "Press Start 2P", monospace;
-    margin-bottom: 25px;
-}
-
-.credits-box h3 {
-    color: #ccc;
-    margin: 15px 0;
-}
-
-.credits-box hr {
-    border: none;
-    border-top: 1px solid #333;
-    margin: 30px 0;
-}
-
-.small {
-    color: #666;
-}
-
-.memorial-link {
-    display: inline-block;
-    margin-top: 30px;
-
-    color: #999;
-    text-decoration: none;
-}
-
-.memorial-link:hover {
-    color: #d00000;
-}
-
-/* --------------------
-   FOOTER
--------------------- */
-
-footer {
-    text-align: center;
-
-    padding: 80px 20px;
-
-    border-top: 1px solid #222;
-}
-
-.footer-glitch {
-    font-family: "Press Start 2P", monospace;
-    font-size: 20px;
-}
-
-footer p {
-    color: #555;
-    margin-top: 15px;
-}
-
-.copyright {
-    font-size: 14px;
-}
-
-/* --------------------
-   ANIMATIONS
--------------------- */
-
-@keyframes flicker {
-
-    0%, 18%, 22%, 63%, 64%, 65%, 100% {
-        opacity: 1;
-    }
-
-    19%, 21%, 62% {
-        opacity: 0.2;
-    }
-
-    20%, 66% {
-        opacity: 0.6;
-    }
-}
-
-/* --------------------
-   MOBILE
--------------------- */
-
-@media (max-width: 800px) {
-
-    .navbar {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    nav {
-        gap: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    nav a {
-        font-size: 16px;
-    }
-
-    .hero {
-        padding: 120px 20px 50px;
-    }
-
-    .subtitle {
-        font-size: 16px;
-    }
-
-    .section {
-        padding: 90px 5%;
-    }
-
-    .content-box {
-        padding: 25px;
-    }
-
-}
-
-/* ========================================
-   DATABASE SYSTEM
-======================================== */
-
-.loading-message,
-.empty-message {
-    padding: 60px;
-    text-align: center;
-
-    color: #555;
-
-    border: 1px dashed #333;
-
-    font-family: "Press Start 2P", monospace;
-    font-size: 12px;
-}
-
-
-/* ========================================
-   CHARACTER GRID
-======================================== */
-
-.character-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(280px, 1fr));
-
-    gap: 25px;
-}
-
-
-.character-card {
-    background: #0a0a0a;
-
-    border: 1px solid #292929;
-
-    overflow: hidden;
-
-    transition:
-        transform 0.2s,
-        border-color 0.2s,
-        box-shadow 0.2s;
-}
-
-
-.character-card:hover {
-    transform: translateY(-7px);
-
-    border-color: #900000;
-
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.7);
-}
-
-
-/* CHARACTER IMAGE */
-
-.character-image {
-    height: 330px;
-
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background:
-        radial-gradient(
-            circle,
-            #222 0%,
-            #090909 65%,
-            #000 100%
-        );
-
-    overflow: hidden;
-}
-
-
-.character-image img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-    position: relative;
-    z-index: 2;
-}
-
-
-.image-placeholder {
-    position: absolute;
-
-    color: #333;
-
-    font-family: "Press Start 2P", monospace;
-    font-size: 11px;
-}
-
-
-.image-missing .image-placeholder {
-    color: #700000;
-}
-
-
-/* STATUS */
-
-.character-status {
-    position: absolute;
-
-    right: 10px;
-    top: 10px;
-
-    padding: 6px 9px;
-
-    background: rgba(0, 0, 0, 0.8);
-
-    border: 1px solid #444;
-
-    color: #999;
-
-    font-size: 14px;
-
-    z-index: 3;
-}
-
-
-/* CHARACTER INFO */
-
-.character-info {
-    padding: 25px;
-}
-
-
-.character-role {
-    color: #800000;
-
-    font-size: 15px;
-
-    letter-spacing: 2px;
-}
-
-
-.character-info h3 {
-    margin: 12px 0;
-
-    font-family: "Press Start 2P", monospace;
+    font-family: Georgia, serif;
 
     font-size: 18px;
 }
 
 
-.character-info p {
-    color: #777;
-
-    line-height: 1.4;
-
-    margin-bottom: 20px;
-}
-
-
-/* CHARACTER SONGS */
-
-.character-songs {
+nav {
     display: flex;
 
     flex-wrap: wrap;
 
-    gap: 7px;
+    justify-content: center;
+
+    gap: 20px;
 }
 
 
-.character-songs span {
-    padding: 5px 8px;
+nav a {
+    color: #171717;
 
-    background: #111;
+    text-decoration: none;
 
-    border: 1px solid #292929;
+    font-family:
+        "Waltograph UI",
+        Georgia,
+        serif;
 
-    color: #666;
+    font-size: 18px;
 
-    font-size: 14px;
+    transition: 0.15s;
+}
+
+
+nav a:hover {
+    text-decoration: underline;
+
+    transform: rotate(-2deg);
 }
 
 
 /* ========================================
-   IMPROVED SONG CARDS
+   HERO
 ======================================== */
 
-.song-card {
+.hero {
+    min-height: 92vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 120px 20px 80px;
+
     position: relative;
 
-    min-height: 230px;
+    overflow: hidden;
 
-    padding: 25px;
+    background:
+        radial-gradient(
+            ellipse at center,
+            #f1ebd8 0%,
+            #ded6bd 65%,
+            #c9c0a5 100%
+        );
 
-    background: #0c0c0c;
+    border-bottom:
+        8px double #171717;
+}
 
-    border: 1px solid #292929;
 
-    transition:
-        0.2s;
+/* Cartoon-style circular title frame */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: min(720px, 85vw);
+
+    height: min(720px, 85vw);
+
+    border:
+        3px solid #171717;
+
+    border-radius: 50%;
+
+    opacity: 0.12;
+}
+
+
+/* Decorative film circles */
+
+.hero::after {
+    content: "✦  ✦  ✦  ✦  ✦";
+
+    position: absolute;
+
+    bottom: 25px;
+
+    font-size: 20px;
+
+    letter-spacing: 25px;
+
+    opacity: 0.4;
+}
+
+
+.hero-glitch {
+    position: relative;
+
+    z-index: 2;
+
+    font-family: "Waltograph", cursive;
+
+    font-size: clamp(
+        65px,
+        12vw,
+        150px
+    );
+
+    line-height: 0.9;
+
+    text-shadow:
+        3px 3px 0 #d2c9ad;
+
+    transform: rotate(-2deg);
+
+    margin-bottom: 30px;
+}
+
+
+.hero-glitch span {
+    display: block;
+}
+
+
+/*
+    Keep the glitch layers subtle.
+    The site is supposed to look old,
+    not like a modern glitch website.
+*/
+
+.hero-glitch span:nth-child(2),
+.hero-glitch span:nth-child(3) {
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0;
+}
+
+
+.subtitle {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 700px;
+
+    font-family:
+        "Waltograph UI",
+        Georgia,
+        serif;
+
+    font-size: 25px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 45px;
+}
+
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.hero-buttons {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+}
+
+
+.button {
+    display: inline-block;
+
+    padding: 14px 30px;
+
+    color: #eee7d2;
+
+    background: #171717;
+
+    border:
+        2px solid #171717;
+
+    text-decoration: none;
+
+    font-family:
+        "Waltograph UI",
+        Georgia,
+        serif;
+
+    font-size: 20px;
+
+    box-shadow:
+        4px 4px 0 #9e957e;
+
+    transition: 0.15s;
+}
+
+
+.button:hover {
+    background: #eee7d2;
+
+    color: #171717;
+
+    transform:
+        translate(-2px, -2px);
+
+    box-shadow:
+        6px 6px 0 #171717;
+}
+
+
+.button.secondary {
+    background: transparent;
+
+    color: #171717;
+}
+
+
+/* ========================================
+   WARNING
+======================================== */
+
+.warning {
+    position: absolute;
+
+    bottom: 55px;
+
+    font-size: 15px;
+
+    letter-spacing: 1px;
+
+    opacity: 0.65;
+}
+
+.warning span {
+    font-size: 20px;
+}
+
+
+/* ========================================
+   SECTIONS
+======================================== */
+
+.section {
+    position: relative;
+
+    min-height: 70vh;
+
+    padding:
+        110px 8%;
+
+    border-bottom:
+        3px double #171717;
+
+    background: #e5dfc9;
+}
+
+
+/*
+    Alternating paper tone.
+*/
+
+.section:nth-child(even) {
+    background: #dcd3b9;
+}
+
+
+/* ========================================
+   SECTION TITLE
+======================================== */
+
+.section-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 55px;
+
+    font-family: "Waltograph", cursive;
+
+    font-size: 58px;
+
+    transform: rotate(-1deg);
+
+    border-bottom:
+        2px solid #171717;
+
+    padding-bottom: 10px;
+}
+
+
+.section-title span {
+    font-family:
+        "Waltograph UI",
+        Georgia,
+        serif;
+
+    font-size: 22px;
+
+    opacity: 0.55;
+}
+
+
+/* ========================================
+   ABOUT
+======================================== */
+
+.content-box {
+    max-width: 900px;
+
+    margin: auto;
+
+    padding: 45px;
+
+    background: #eee7d2;
+
+    border:
+        3px solid #171717;
+
+    box-shadow:
+        9px 9px 0 rgba(0, 0, 0, 0.18);
+
+    transform: rotate(0.5deg);
+}
+
+
+.content-box h2 {
+    font-family: "Waltograph", cursive;
+
+    font-size: 45px;
+
+    margin-bottom: 25px;
+}
+
+
+.content-box p {
+    font-size: 21px;
+
+    line-height: 1.7;
+
+    margin: 20px 0;
+}
+
+
+.red-text {
+    color: #171717 !important;
+
+    font-weight: bold;
+
+    text-decoration:
+        underline double;
+}
+
+
+/* ========================================
+   SONGS
+======================================== */
+
+.song-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(270px, 1fr)
+        );
+
+    gap: 30px;
+}
+
+
+.song-card {
+    min-height: 250px;
+
+    padding: 30px;
+
+    background: #eee7d2;
+
+    border:
+        3px solid #171717;
+
+    box-shadow:
+        7px 7px 0 rgba(0, 0, 0, 0.15);
+
+    transition: 0.15s;
+}
+
+
+.song-card:nth-child(even) {
+    transform: rotate(1deg);
+}
+
+.song-card:nth-child(odd) {
+    transform: rotate(-1deg);
 }
 
 
 .song-card:hover {
-    border-color: #a00000;
-
-    transform: translateY(-5px);
+    transform:
+        rotate(0deg)
+        translateY(-5px);
 
     box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.5);
+        10px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 
@@ -684,41 +606,40 @@ footer p {
 
     justify-content: space-between;
 
-    align-items: center;
+    border-bottom:
+        2px solid #171717;
+
+    padding-bottom: 10px;
 }
 
 
 .song-number {
-    color: #800000;
+    font-family: "Waltograph", cursive;
 
-    font-family: "Press Start 2P", monospace;
-
-    font-size: 14px;
+    font-size: 35px;
 }
 
 
 .song-status {
-    color: #555;
-
     font-size: 13px;
+
+    align-self: center;
 }
 
 
 .song-card h3 {
-    margin: 35px 0 15px;
+    font-family: "Waltograph", cursive;
 
-    font-family: "Press Start 2P", monospace;
+    font-size: 42px;
 
-    font-size: 18px;
+    margin: 30px 0 15px;
 }
 
 
 .song-card > p {
-    color: #777;
+    font-size: 18px;
 
-    line-height: 1.4;
-
-    min-height: 50px;
+    line-height: 1.5;
 }
 
 
@@ -727,20 +648,498 @@ footer p {
 
     flex-direction: column;
 
-    gap: 8px;
+    gap: 5px;
 
     margin-top: 25px;
 
     padding-top: 15px;
 
-    border-top: 1px solid #222;
-
-    color: #555;
+    border-top:
+        1px solid #555;
 
     font-size: 15px;
 }
 
 
-.song-details strong {
-    color: #999;
+/* ========================================
+   CHARACTERS
+======================================== */
+
+.character-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 35px;
+}
+
+
+.character-card {
+    background: #eee7d2;
+
+    border:
+        3px solid #171717;
+
+    box-shadow:
+        8px 8px 0 rgba(0, 0, 0, 0.17);
+
+    overflow: hidden;
+
+    transition: 0.2s;
+}
+
+
+.character-card:hover {
+    transform:
+        translateY(-7px)
+        rotate(0deg);
+}
+
+
+.character-card:nth-child(odd) {
+    transform: rotate(-1deg);
+}
+
+.character-card:nth-child(even) {
+    transform: rotate(1deg);
+}
+
+
+.character-image {
+    height: 350px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        #d0c7ad;
+
+    border-bottom:
+        3px solid #171717;
+
+    overflow: hidden;
+}
+
+
+.character-image img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    filter:
+        grayscale(1)
+        contrast(1.15)
+        sepia(0.15);
+}
+
+
+.image-placeholder {
+    position: absolute;
+
+    font-family: "Waltograph", cursive;
+
+    font-size: 45px;
+
+    opacity: 0.25;
+}
+
+
+.character-status {
+    position: absolute;
+
+    top: 12px;
+
+    right: 12px;
+
+    padding: 5px 10px;
+
+    background: #171717;
+
+    color: #eee7d2;
+
+    font-size: 12px;
+}
+
+
+.character-info {
+    padding: 25px;
+}
+
+
+.character-role {
+    font-size: 14px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+.character-info h3 {
+    font-family: "Waltograph", cursive;
+
+    font-size: 45px;
+
+    margin: 8px 0 15px;
+}
+
+
+.character-info p {
+    line-height: 1.5;
+
+    font-size: 18px;
+}
+
+
+.character-songs {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 20px;
+}
+
+
+.character-songs span {
+    padding: 5px 9px;
+
+    border:
+        1px solid #171717;
+
+    font-size: 14px;
+}
+
+
+/* ========================================
+   MEDIA
+======================================== */
+
+.media-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 30px;
+}
+
+
+.media-card {
+    aspect-ratio: 4 / 3;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #cfc5aa;
+
+    border:
+        5px solid #171717;
+
+    box-shadow:
+        8px 8px 0 rgba(0, 0, 0, 0.2);
+
+    font-family:
+        "Waltograph",
+        cursive;
+
+    font-size: 40px;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.media-card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 10px;
+
+    border:
+        2px solid #171717;
+}
+
+
+/* ========================================
+   CREDITS
+======================================== */
+
+.credits-box {
+    max-width: 700px;
+
+    margin: auto;
+
+    padding: 50px;
+
+    text-align: center;
+
+    background: #eee7d2;
+
+    border:
+        4px double #171717;
+
+    box-shadow:
+        8px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+
+.credits-box h2 {
+    font-family: "Waltograph", cursive;
+
+    font-size: 65px;
+}
+
+
+.credits-box h3 {
+    font-family: "Waltograph", cursive;
+
+    font-size: 40px;
+
+    margin: 15px 0;
+}
+
+
+.credits-box hr {
+    border: none;
+
+    border-top:
+        2px solid #171717;
+
+    margin: 30px 0;
+}
+
+
+.credits-box .small {
+    font-size: 16px;
+
+    line-height: 1.5;
+}
+
+
+.memorial-link {
+    display: inline-block;
+
+    margin-top: 35px;
+
+    color: #171717;
+
+    font-family:
+        "Waltograph UI",
+        Georgia,
+        serif;
+
+    font-size: 20px;
+
+    text-decoration: none;
+
+    border-bottom:
+        1px solid #171717;
+}
+
+
+.memorial-link:hover {
+    border-bottom:
+        3px double #171717;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+    padding: 100px 20px;
+
+    text-align: center;
+
+    background: #171717;
+
+    color: #eee7d2;
+}
+
+
+.footer-glitch {
+    font-family: "Waltograph", cursive;
+
+    font-size: 65px;
+}
+
+
+footer p {
+    margin-top: 15px;
+
+    opacity: 0.7;
+}
+
+
+.copyright {
+    font-size: 13px;
+}
+
+
+/* ========================================
+   LOADING
+======================================== */
+
+.loading-message,
+.empty-message {
+    padding: 70px;
+
+    text-align: center;
+
+    border:
+        2px dashed #171717;
+
+    font-family:
+        "Waltograph UI",
+        Georgia,
+        serif;
+
+    font-size: 20px;
+}
+
+
+/* ========================================
+   FILM ANIMATIONS
+======================================== */
+
+@keyframes filmNoise {
+
+    0% {
+        transform:
+            translate(0, 0);
+    }
+
+    25% {
+        transform:
+            translate(2px, -1px);
+    }
+
+    50% {
+        transform:
+            translate(-1px, 2px);
+    }
+
+    75% {
+        transform:
+            translate(-2px, -1px);
+    }
+
+    100% {
+        transform:
+            translate(1px, 1px);
+    }
+}
+
+
+@keyframes scratches {
+
+    0% {
+        transform:
+            translateX(-20px);
+    }
+
+    100% {
+        transform:
+            translateX(20px);
+    }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+
+    nav {
+        gap: 10px;
+    }
+
+
+    nav a {
+        font-size: 15px;
+    }
+
+
+    .hero {
+        min-height: 85vh;
+    }
+
+
+    .hero-glitch {
+        font-size: 65px;
+    }
+
+
+    .subtitle {
+        font-size: 19px;
+    }
+
+
+    .section {
+        padding:
+            80px 5%;
+    }
+
+
+    .section-title {
+        font-size: 45px;
+    }
+
+
+    .content-box {
+        padding: 25px;
+    }
+
+
+    .content-box h2 {
+        font-size: 35px;
+    }
+
+
+    .character-image {
+        height: 300px;
+    }
+
+
+    .credits-box {
+        padding: 30px 20px;
+    }
+
+
+    .credits-box h2 {
+        font-size: 48px;
+    }
+
 }
