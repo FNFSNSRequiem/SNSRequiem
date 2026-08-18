@@ -1143,3 +1143,18 @@ footer p {
     }
 
 }
+
+.update-card {
+    margin-bottom: 35px;
+}
+
+.update-date {
+    font-family: "Waltograph UI", Georgia, serif;
+    font-size: 16px !important;
+    letter-spacing: 2px;
+    opacity: 0.65;
+}
+
+.update-card h2 {
+    margin-top: 5px;
+}
