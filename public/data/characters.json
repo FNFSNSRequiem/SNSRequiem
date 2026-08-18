@@ -1,0 +1,20 @@
+[
+  {
+    "id": "mickey",
+    "name": "Mickey Mouse",
+    "role": "MAIN OPPONENT",
+    "description": "The familiar cartoon mouse returns for another nightmare.",
+    "image": "/images/characters/mickey.png",
+    "songs": ["Unknown", "Unknown"],
+    "status": "UNKNOWN"
+  },
+  {
+    "id": "boyfriend",
+    "name": "Boyfriend",
+    "role": "PLAYER",
+    "description": "The challenger who finds himself trapped inside the nightmare.",
+    "image": "/images/characters/boyfriend.png",
+    "songs": ["Unknown"],
+    "status": "ALIVE"
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "song-01",
+    "number": "01",
+    "name": "Unknown",
+    "opponent": "Mickey Mouse",
+    "description": "A song from the Requiem.",
+    "difficulty": "TBA",
+    "status": "COMING SOON"
+  },
+  {
+    "id": "song-02",
+    "number": "02",
+    "name": "Unknown",
+    "opponent": "Mickey Mouse",
+    "description": "Something is waiting in the darkness.",
+    "difficulty": "TBA",
+    "status": "COMING SOON"
+  },
+  {
+    "id": "song-03",
+    "number": "03",
+    "name": "Unknown",
+    "opponent": "Unknown",
+    "description": "The recording continues.",
+    "difficulty": "TBA",
+    "status": "COMING SOON"
+  }
+]

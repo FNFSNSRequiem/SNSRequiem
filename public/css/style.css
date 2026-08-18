@@ -463,3 +463,284 @@ footer p {
     }
 
 }
+
+/* ========================================
+   DATABASE SYSTEM
+======================================== */
+
+.loading-message,
+.empty-message {
+    padding: 60px;
+    text-align: center;
+
+    color: #555;
+
+    border: 1px dashed #333;
+
+    font-family: "Press Start 2P", monospace;
+    font-size: 12px;
+}
+
+
+/* ========================================
+   CHARACTER GRID
+======================================== */
+
+.character-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 25px;
+}
+
+
+.character-card {
+    background: #0a0a0a;
+
+    border: 1px solid #292929;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.character-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #900000;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+
+/* CHARACTER IMAGE */
+
+.character-image {
+    height: 330px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #222 0%,
+            #090909 65%,
+            #000 100%
+        );
+
+    overflow: hidden;
+}
+
+
+.character-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+.image-placeholder {
+    position: absolute;
+
+    color: #333;
+
+    font-family: "Press Start 2P", monospace;
+    font-size: 11px;
+}
+
+
+.image-missing .image-placeholder {
+    color: #700000;
+}
+
+
+/* STATUS */
+
+.character-status {
+    position: absolute;
+
+    right: 10px;
+    top: 10px;
+
+    padding: 6px 9px;
+
+    background: rgba(0, 0, 0, 0.8);
+
+    border: 1px solid #444;
+
+    color: #999;
+
+    font-size: 14px;
+
+    z-index: 3;
+}
+
+
+/* CHARACTER INFO */
+
+.character-info {
+    padding: 25px;
+}
+
+
+.character-role {
+    color: #800000;
+
+    font-size: 15px;
+
+    letter-spacing: 2px;
+}
+
+
+.character-info h3 {
+    margin: 12px 0;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 18px;
+}
+
+
+.character-info p {
+    color: #777;
+
+    line-height: 1.4;
+
+    margin-bottom: 20px;
+}
+
+
+/* CHARACTER SONGS */
+
+.character-songs {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+
+.character-songs span {
+    padding: 5px 8px;
+
+    background: #111;
+
+    border: 1px solid #292929;
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+
+/* ========================================
+   IMPROVED SONG CARDS
+======================================== */
+
+.song-card {
+    position: relative;
+
+    min-height: 230px;
+
+    padding: 25px;
+
+    background: #0c0c0c;
+
+    border: 1px solid #292929;
+
+    transition:
+        0.2s;
+}
+
+
+.song-card:hover {
+    border-color: #a00000;
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+
+.song-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.song-number {
+    color: #800000;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 14px;
+}
+
+
+.song-status {
+    color: #555;
+
+    font-size: 13px;
+}
+
+
+.song-card h3 {
+    margin: 35px 0 15px;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 18px;
+}
+
+
+.song-card > p {
+    color: #777;
+
+    line-height: 1.4;
+
+    min-height: 50px;
+}
+
+
+.song-details {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-top: 25px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #222;
+
+    color: #555;
+
+    font-size: 15px;
+}
+
+
+.song-details strong {
+    color: #999;
+}
