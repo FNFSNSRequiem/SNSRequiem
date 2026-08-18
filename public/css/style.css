@@ -1,0 +1,465 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050505;
+    color: #eee;
+    font-family: "VT323", monospace;
+    font-size: 20px;
+    overflow-x: hidden;
+}
+
+/* --------------------
+   EFFECTS
+-------------------- */
+
+.scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(255,255,255,0.025) 4px
+    );
+}
+
+.noise {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.05;
+
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --------------------
+   NAVBAR
+-------------------- */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 5%;
+
+    background: rgba(0,0,0,0.92);
+    border-bottom: 1px solid #333;
+
+    z-index: 100;
+}
+
+.nav-logo {
+    font-family: "Press Start 2P", monospace;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.nav-logo span {
+    color: #d40000;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: #aaa;
+    text-decoration: none;
+    transition: 0.15s;
+}
+
+nav a:hover {
+    color: white;
+    text-shadow: 2px 0 #d00000;
+}
+
+/* --------------------
+   HERO
+-------------------- */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(circle at center, #222 0%, #050505 55%, #000 100%);
+
+    position: relative;
+}
+
+.hero-glitch {
+    position: relative;
+
+    font-family: "Press Start 2P", monospace;
+    font-size: clamp(30px, 7vw, 90px);
+
+    margin-bottom: 30px;
+}
+
+.hero-glitch span {
+    display: block;
+}
+
+.hero-glitch span:nth-child(2),
+.hero-glitch span:nth-child(3) {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    opacity: 0;
+}
+
+.subtitle {
+    color: #999;
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.button {
+    display: inline-block;
+
+    padding: 15px 30px;
+
+    color: white;
+    background: #a00000;
+
+    border: 1px solid #ff3030;
+
+    text-decoration: none;
+
+    font-family: "Press Start 2P", monospace;
+    font-size: 12px;
+
+    transition: 0.15s;
+}
+
+.button:hover {
+    background: #ff2020;
+    transform: translateY(-3px);
+}
+
+.button.secondary {
+    background: transparent;
+    border-color: #555;
+}
+
+.warning {
+    position: absolute;
+    bottom: 30px;
+
+    color: #666;
+    font-size: 16px;
+}
+
+.warning span {
+    color: #d00000;
+}
+
+/* --------------------
+   SECTIONS
+-------------------- */
+
+.section {
+    min-height: 80vh;
+    padding: 120px 8%;
+
+    border-top: 1px solid #222;
+}
+
+.section-title {
+    font-family: "Press Start 2P", monospace;
+    font-size: 25px;
+    margin-bottom: 50px;
+}
+
+.section-title span {
+    color: #900000;
+    margin-right: 15px;
+}
+
+/* --------------------
+   ABOUT
+-------------------- */
+
+.content-box {
+    max-width: 850px;
+
+    padding: 40px;
+
+    background: #0b0b0b;
+    border-left: 3px solid #a00000;
+
+    box-shadow: 10px 10px 0 #111;
+}
+
+.content-box h2 {
+    font-family: "Press Start 2P", monospace;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.content-box p {
+    color: #aaa;
+    margin: 20px 0;
+    line-height: 1.5;
+}
+
+.red-text {
+    color: #d00000 !important;
+}
+
+/* --------------------
+   SONGS
+-------------------- */
+
+.song-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.song-card {
+    min-height: 180px;
+
+    padding: 25px;
+
+    background: #0c0c0c;
+    border: 1px solid #292929;
+
+    transition: 0.2s;
+}
+
+.song-card:hover {
+    border-color: #a00000;
+    transform: translateY(-5px);
+}
+
+.song-number {
+    color: #800000;
+}
+
+.song-card h3 {
+    font-family: "Press Start 2P", monospace;
+    margin: 30px 0 10px;
+}
+
+.song-card p {
+    color: #555;
+}
+
+/* --------------------
+   CHARACTERS
+-------------------- */
+
+.character-placeholder {
+    text-align: center;
+    padding: 100px 20px;
+
+    background: #080808;
+    border: 1px dashed #333;
+}
+
+.character-glitch {
+    font-family: "Press Start 2P", monospace;
+    font-size: 80px;
+    color: #700000;
+
+    animation: flicker 2s infinite;
+}
+
+.character-placeholder h2 {
+    margin: 30px 0 10px;
+}
+
+/* --------------------
+   MEDIA
+-------------------- */
+
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.media-card {
+    height: 200px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #111;
+    border: 1px solid #333;
+
+    color: #555;
+
+    transition: 0.2s;
+}
+
+.media-card:hover {
+    color: white;
+    border-color: #900000;
+}
+
+/* --------------------
+   CREDITS
+-------------------- */
+
+.credits-box {
+    max-width: 650px;
+    text-align: center;
+
+    margin: auto;
+    padding: 50px;
+
+    background: #0b0b0b;
+    border: 1px solid #292929;
+}
+
+.credits-box h2 {
+    font-family: "Press Start 2P", monospace;
+    margin-bottom: 25px;
+}
+
+.credits-box h3 {
+    color: #ccc;
+    margin: 15px 0;
+}
+
+.credits-box hr {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 30px 0;
+}
+
+.small {
+    color: #666;
+}
+
+.memorial-link {
+    display: inline-block;
+    margin-top: 30px;
+
+    color: #999;
+    text-decoration: none;
+}
+
+.memorial-link:hover {
+    color: #d00000;
+}
+
+/* --------------------
+   FOOTER
+-------------------- */
+
+footer {
+    text-align: center;
+
+    padding: 80px 20px;
+
+    border-top: 1px solid #222;
+}
+
+.footer-glitch {
+    font-family: "Press Start 2P", monospace;
+    font-size: 20px;
+}
+
+footer p {
+    color: #555;
+    margin-top: 15px;
+}
+
+.copyright {
+    font-size: 14px;
+}
+
+/* --------------------
+   ANIMATIONS
+-------------------- */
+
+@keyframes flicker {
+
+    0%, 18%, 22%, 63%, 64%, 65%, 100% {
+        opacity: 1;
+    }
+
+    19%, 21%, 62% {
+        opacity: 0.2;
+    }
+
+    20%, 66% {
+        opacity: 0.6;
+    }
+}
+
+/* --------------------
+   MOBILE
+-------------------- */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 16px;
+    }
+
+    .hero {
+        padding: 120px 20px 50px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .section {
+        padding: 90px 5%;
+    }
+
+    .content-box {
+        padding: 25px;
+    }
+
+}

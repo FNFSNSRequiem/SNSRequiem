@@ -1,0 +1,24 @@
+{
+  "name": "snsrequiem",
+  "version": "1.0.0",
+  "description": "The official website for an FNF mod: SNS Requiem",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FNFSNSRequiem/SNSRequiem.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/FNFSNSRequiem/SNSRequiem/issues"
+  },
+  "homepage": "https://github.com/FNFSNSRequiem/SNSRequiem#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
